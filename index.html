@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en" class="h-100">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="lib/bootstrap.css" rel="stylesheet">
+        <link href="lib/animate.css" rel="stylesheet">
+        <link href="lib/fa/css/all.min.css" rel="stylesheet">
+        <script src="lib/bootstrap.js" async defer></script>
+        <title>Duck Enlightenment</title>
+    </head>
+    <body class="animated fadeIn d-flex flex-column h-100">
+        <h1 class="text-center py-5 animated slideInUp"><i class="fa-solid fa-file-lines text-primary pe-3"></i>Duck Enlightenment</h1>
+        <div class="container animated slideInUp" id="frame" style="padding-top:90px;">
+            <div class="card">
+                <h5 class="card-header" id="top"></h5>
+                <div class="card-body p-lg-5">
+                    <div id="start-lay">
+                        <h5 class="card-title">Ready to start your assesment?</h5>
+                        <p class="card-text">It's simple! You'll be presented 3 ducks, and are to select 1 from the group that speak the most to you. Each one will send you down a uniquie path to unveil a secret.</p>
+                        <button type="button" onclick="start()" class="btn btn-success px-5 animated fadeInRight">Start<i class="fa-solid fa-angle-right ms-2" style="opacity:0.6;"></i></button>
+                    </div>
+                    <div id="results-lay" style="display:none;">
+                        <img class="animated slideInUp slow" src="img/think.jpg" height="300px" alt="Duck with Magnifyer"></img>
+                        <br>
+                        <h5 class="card-title pt-5 pb-3 animated fadeInUp delay-1s">Here's what the ducks say:</h5>
+                        <p class="card-text animated fadeIn slow delay-1s" id="results">...</p>
+                        <br>
+                        <button type="button" onclick="reset()" class="btn btn-secondary px-5 animated fadeInDown delay-2s">Take Again</button>
+                    </div>
+                    <div id="grid-lay" style="display:none;">
+                        <div class="row row-cols-auto text-center">
+                            <div class="col-6 col-md-4"><img id="duck-1" class="animated fadeInDown fast" onclick="duck(1)" src="img/think.jpg" height="200px" alt="Duck #1"></img></div>
+                            <div class="col-6 col-md-4"><img id="duck-2" class="animated fadeInDown fast" style="animation-delay: 100ms" onclick="duck(2)" src="img/think.jpg" height="200px" alt="Duck #2"></img></div>
+                            <div class="col-6 col-md-4"><img id="duck-3" class="animated fadeInDown fast" style="animation-delay: 200ms" onclick="duck(3)" src="img/think.jpg" height="200px" alt="Duck #3"></img></div>
+                        </div>
+                        <p class="m-0 p-0 px-5 pt-5 text-center text-secondary animated fadeIn delay-1s" id="helpbar">...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer mt-auto py-3 bg-light">
+          <div class="container">
+            <span class="text-muted">A project by <b>Zach Duda</b> for WHS Art & Meaning<i class="fa-solid fa-heart ms-2"></i></span>
+            <span class="text-muted float-end" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#license"><i class="fa-solid fa-code me-2"></i>Credits</span>
+          </div>
+        </footer>
+        <div class="modal fade" id="license" tabindex="-1" aria-labelledby="licenselabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="licenselabel">License and Library Credits</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                This project was created by <b>Zach Duda</b> specially for WHS Art 2022. Special thanks to the following developers for having free and open-source public librarys that were used to make this.
+                <br>
+                <br>
+                <h3>Bootstrap</h3>
+                <p>Powerful, extensible, and feature-packed frontend toolkit</p>
+                <a href="https://getbootstrap.com" class="btn btn-secondary btn-sm" target="_blank">Visit Website</a>
+                <br>
+                <hr>
+                <h3>FontAwesome</h3>
+                <p>Font Awesome is the Internet's icon library and toolkit, used by millions of designers, developers, and content creators.</p>
+                <a href="https://fontawesome.com" class="btn btn-secondary btn-sm" target="_blank">Visit Website</a>
+                <br>
+                <hr>
+                <h3>Animate.css</h3>
+                <p>Just add water CSS animations.</p>
+                <a href="https://animate.style" class="btn btn-secondary btn-sm" target="_blank">Visit Website</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script>
+            function id(sid) {
+                return document.getElementById(sid);
+            }
+
+            function hide(sid) {
+                id(sid).style.display = "none";
+            }
+
+            function show(sid) {
+                id(sid).style.display = null;
+            }
+
+            function set(sid, txt) {
+                id(sid).innerHTML = txt;
+            }
+
+            const maxrounds = 3;
+            let Game = {};
+            function reset() {
+                Game = {};
+                Game.Round = 0;
+                id("frame").style.maxWidth = "800px";
+                show("helpbar");
+                set("helpbar", "Out of the following, pick the duck that speaks to you the most in this moment.");
+                set("top", "<i class='fa-solid fa-circle-info text-secondary pe-3'></i>About the Test");
+                hide("grid-lay");
+                hide("results-lay");
+                show("start-lay");
+            }
+
+            function getPics() {
+                if(Game.Round > 1) {
+                    hide("helpbar");
+                }
+                let ducks = [1, 2, 3];
+                let alph = ['a', 'b', 'c'];
+                const round = Game.Round;
+                const base = "img/"+round;
+                const ext = ".png";
+                ducks.forEach(s => {
+                    let sur = 'duck-'+s;
+                    let cur = id(sur);
+                    hide(sur);
+                    setTimeout(() => {
+                      if(Game.Round == 2) {
+                          show("helpbar");
+                          set("helpbar", "<b>Great!</b> Now pick one of these fine fellows.");
+                      } else if(Game.Round >= maxrounds) {
+                          show("helpbar");
+                          set("helpbar", "<b>Nice!</b> This is the last one, so choose wisely!");
+                      } else if(Game.Round > 1){
+                          hide("helpbar");
+                      }
+                      cur.src = base + alph[s-1]+ext;
+                      show(sur);
+                    }, 200);
+                });
+            }
+
+            function done() {
+                hide("grid-lay");
+                show("results-lay");
+                set("top", "<i class='fa-solid fa-square-poll-vertical text-secondary pe-2'></i>Your Results");
+                id("frame").style.maxWidth = "500px";
+                let result = "";
+
+                Traits = {};
+
+                Traits.Fun = 0;
+                Traits.Social = 0;
+                Traits.Creative = 0;
+                Traits.Anxiety = 0;
+                Traits.Happy = 0;
+                Traits.Sleepy = 0;
+
+                if(Game[1] == 1) {
+                    Traits.Fun++;
+                    Traits.Social++;
+                    Traits.Happy++;
+                }
+                if(Game[1] == 2) {
+                    Traits.Creative++;
+                    Traits.Sleepy++;
+                }
+                if(Game[1] == 3) {
+                    Traits.Anxiety++;
+                    Traits.Social++;
+                    Traits.Happy++;
+                }
+
+                if(Game[2] == 1) {
+                    Traits.Fun = Traits.Fun+2;
+                    Traits.Creative++;
+                }
+
+                if(Game[2] == 2) {
+                    Traits.Sleepy++;
+                    Traits.Anxiety++;
+                    Traits.Happy++;
+                }
+
+                if(Game[2] == 3) {
+                    Traits.Sleepy = Traits.Sleepy+2;
+                    Traits.Fun = Traits.Fun+2;
+                }
+
+                result += "According to the ducks, it looks like ";
+
+                let i = 0;
+                let maintrait = "";
+                let TraitsSort = Object.keys(Traits)
+                   .sort(function(keya, keyb) {
+                       return Traits[keyb] - Traits[keya];
+                   })
+                   .forEach(function(key) {
+                       i++;
+                       console.log(key, Traits[key]);
+                       if(i == 1) {
+                            maintrait = key;
+                            // MOSTLY
+                            if(key == "Sleepy") {
+                                result += "you're almost always napping or half-asleep, ";
+                            }
+                            if(key == "Fun") {
+                                result += "you're always the funniest whenever you're in a group, ";
+                            }
+                            if(key == "Creative") {
+                                result += "your creativity knows no bounds as the artist of the group, ";
+                            }
+                            if(key == "Social") {
+                                result += "you're out partying 24/7 and are a little crazy, ";
+                            }
+                            if(key == "Happy") {
+                                result += "you're always putting up a smile, ";
+                            }
+                        } else
+                        if(i == 2) {
+                            // SOMEWHAT
+                            if(key == "Sleepy") {
+                                result += "you're just barely staying awake right now, ";
+                            }
+                            if(key == "Fun") {
+                                result += "you've got some funny skills, ";
+                            }
+                            if(key == "Creative") {
+                                result += "you have an artistic side that you don't always show, ";
+                            }
+                            if(key == "Social") {
+                                result += "some might find you an extrovert but you really like being inside, ";
+                            }
+                            if(key == "Happy") {
+                                result += "you're constantly in tune with the people around you, ";
+                            }
+                        } else
+                        if(i == 6) {
+                            // NOT AT ALL
+                            if(key == "Sleepy") {
+                                result += "you're cracked out on energy drinks, ";
+                            }
+                            if(key == "Fun") {
+                                result += "you need to chillax on the 1,000 side-hobbies, ";
+                            }
+                            if(key == "Creative") {
+                                result += "you should watch some Bob Ross videos, ";
+                            }
+                            if(key == "Social") {
+                                result += "you need to go outside, ";
+                            }
+                            if(key == "Happy") {
+                                result += "you might need something to brighten up your day, ";
+                            }
+                        }
+                   });
+                console.log(TraitsSort);
+                console.log("----------------");
+
+
+                result += "and love bread!";
+                result += "<br><br>Your <b>primary trait</b> is that you're overwhelmingly <b>" + maintrait + "</b><hr>";
+                set("results", result);
+            }
+            function next() {
+                if(Game.Round+1 > maxrounds) {
+                    done();
+                    return;
+                }
+                Game.Round++;
+                set("top", "Round " + Game.Round);
+
+                getPics();
+            }
+
+            function duck(num) {
+                Game[Game.Round] = num;
+                next();
+            }
+
+            reset();
+
+            function start() {
+                id("frame").style.maxWidth = null;
+                hide("start-lay");
+                show("grid-lay");
+                next();
+            }
+        </script>
+    </body>
+</html>
