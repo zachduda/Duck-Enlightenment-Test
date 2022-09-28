@@ -172,7 +172,7 @@
                 Traits.Social = 0;
                 Traits.Creative = 0;
                 Traits.Anxiety = 0;
-                Traits.Happy = 0;
+                Traits.Positive = 0;
                 Traits.Sleepy = 0;
 
                 if(Game[1] == 1) {
@@ -205,6 +205,25 @@
                     Traits.Sleepy = Traits.Sleepy+2;
                     Traits.Fun = Traits.Fun+2;
                 }
+				
+				if(Game[3] == 1) {
+					Traits.Social -= 1;
+					Traits.Creative += 1;
+				}
+				
+				if(Game[3] == 1) {
+					Traits.Social -= 1;
+					Traits.Creative += 1;
+				}
+				
+				if(Game[3] == 2) {
+					Traits.Fun += 1;
+					Traits.Positive += 1;
+				}
+				
+				if(Game[3] == 3) {
+					Traits.Social += 1;
+				}
 
                 result += "According to the ducks, it looks like ";
 
