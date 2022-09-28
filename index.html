@@ -1,34 +1,38 @@
 <!doctype html>
 <html lang="en" class="h-100">
     <head>
-        <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="lib/bootstrap.css" rel="stylesheet">
         <link href="lib/animate.css" rel="stylesheet">
         <link href="lib/fa/css/all.min.css" rel="stylesheet">
+        <link href="lib/app.css" rel="stylesheet">
         <script src="lib/bootstrap.js" async defer></script>
+        <script src="lib/twemoji/init.js"></script>
         <title>Duck Enlightenment</title>
     </head>
     <body class="animated fadeIn d-flex flex-column h-100">
-        <h1 class="text-center py-5 animated slideInUp"><i class="fa-solid fa-file-lines text-primary pe-3"></i>Duck Enlightenment</h1>
+        <h1 class="text-center py-5 animated slideInUp">&#129414;  Duck Enlightenment</h1>
         <div class="container animated slideInUp" id="frame" style="padding-top:90px;">
             <div class="card">
                 <h5 class="card-header" id="top"></h5>
                 <div class="card-body p-lg-5">
                     <div id="start-lay">
-                        <h5 class="card-title">Ready to start your assesment?</h5>
-                        <p class="card-text">It's simple! You'll be presented 3 ducks, and are to select 1 from the group that speak the most to you. Each one will send you down a uniquie path to unveil a secret.</p>
-                        <button type="button" onclick="start()" class="btn btn-success px-5 animated fadeInRight">Start<i class="fa-solid fa-angle-right ms-2" style="opacity:0.6;"></i></button>
+                        <h5 class="card-title">Life is filled with choices.</h5>
+                        <p class="card-text">Your partners, friends, jobs, schools, and future are all dictated by choices that you made in the past, choices you can make today, and choices that you will eventually make in the future. These complex and life altering decisions can make it difficult to dissern the simple things, hence the ducks have come to simplify all.</p>
+                        <br>
+                        <hr>
+                        <br>
+                        <h5 class="card-title" style="font-size:24px;">Ready to start your assesment?</h5>
+                        <p class="card-text" style="font-size:18px;">It's simple! You'll be presented <b>3</b> ducks, and are to choose 1 from the group that speaks the most to you. Each one will give the ducks a hint at your current state.</p>
+                        <button type="button" onclick="start()" style="font-size:24px;" class="btn btn-success px-5 animated fadeInRight">Start<i class="fa-solid fa-angle-right ms-2" style="opacity:0.6;"></i></button>
                     </div>
                     <div id="results-lay" style="display:none;">
-                        <img class="animated slideInUp slow" src="img/think.jpg" height="300px" alt="Duck with Magnifyer"></img>
-                        <br>
-                        <h5 class="card-title pt-5 pb-3 animated fadeInUp delay-1s">Here's what the ducks say:</h5>
+                        <!--<img class="animated slideInUp slow" src="img/think.jpg" height="300px" alt="Duck with Magnifyer"></img> -->
+                        <h5 class="card-title pt-2 pb-3 animated fadeInUp">Here's what the ducks say:</h5>
                         <p class="card-text animated fadeIn slow delay-1s" id="results">...</p>
                         <br>
-                        <button type="button" onclick="reset()" class="btn btn-secondary px-5 animated fadeInDown delay-2s">Take Again</button>
+                        <button type="button" onclick="reset()" style="font-size:24px;" class="btn btn-secondary px-5 animated fadeInDown delay-2s">Take Again</button>
                     </div>
                     <div id="grid-lay" style="display:none;">
                         <div class="row row-cols-auto text-center">
@@ -43,11 +47,12 @@
         </div>
         <footer class="footer mt-auto py-3 bg-light">
           <div class="container">
-            <span class="text-muted">A project by <b>Zach Duda</b> for WHS Art & Meaning<i class="fa-solid fa-heart ms-2"></i></span>
+            <span class="text-muted">A project by <a href="https://zachduda.com" class="text-muted" style="text-decoration: none !important;" target="_blank"><b>Zach Duda</b></a> for WHS Art & Meaning<i class="fa-solid fa-heart ms-2"></i></span>
+            <span class="text-muted float-end px-2 mx-4 rounded" style="opacity:0.5;background:lightgray;">v1.1</span>
             <span class="text-muted float-end" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#license"><i class="fa-solid fa-code me-2"></i>Credits</span>
           </div>
         </footer>
-        <div class="modal fade" id="license" tabindex="-1" aria-labelledby="licenselabel" aria-hidden="true">
+        <div class="modal modal-lg fade" id="license" tabindex="-1" aria-labelledby="licenselabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
               <div class="modal-header">
@@ -58,24 +63,40 @@
                 This project was created by <b>Zach Duda</b> specially for WHS Art 2022. Special thanks to the following developers for having free and open-source public librarys that were used to make this.
                 <br>
                 <br>
-                <h3>Bootstrap</h3>
-                <p>Powerful, extensible, and feature-packed frontend toolkit</p>
+                <h3 style="font-weight:200">Bootstrap</h3>
+                <p><span class="text-muted" style="font-size:12px;">All-in-one CSS library that makes awesome UI easy.</span></p>
                 <a href="https://getbootstrap.com" class="btn btn-secondary btn-sm" target="_blank">Visit Website</a>
                 <br>
                 <hr>
-                <h3>FontAwesome</h3>
-                <p>Font Awesome is the Internet's icon library and toolkit, used by millions of designers, developers, and content creators.</p>
+                <h3 style="font-weight:200">FontAwesome</h3>
+                <p>
+                  <span class="text-muted" style="font-size:12px;">Smooth vector SVG icons made easy.</span>
+                </p>
                 <a href="https://fontawesome.com" class="btn btn-secondary btn-sm" target="_blank">Visit Website</a>
                 <br>
                 <hr>
-                <h3>Animate.css</h3>
-                <p>Just add water CSS animations.</p>
-                <a href="https://animate.style" class="btn btn-secondary btn-sm" target="_blank">Visit Website</a>
+                <h3 style="font-weight:200"><a href="https://animate.style" style="text-decoration: none;" class="text-dark" target="_blank">Animate.css</a></h3>
+                <hr>
+                <h3 style="font-weight:200">Twemoji</h3>
+                <p>
+                  <span class="text-muted" style="font-size:12px;">Copyright Twitter, Inc and other contributors.
+                    <br>Code licensed under the MIT License, Graphics licensed under CC-BY 4.0.</span>
+                </p>
+                <a href="https://twemoji.twitter.com" class="btn btn-secondary btn-sm" target="_blank">Visit Website</a>
+                <br>
+                <hr>
+                <h3 style="font-weight:200">Poppins Font</h3>
+                <p>
+                  <span class="text-muted" style="font-size:12px;">
+                      Main project font, created by Jonny Pinhorn & the Indian Type Foundry.
+                  </span>
+                </p>
+                <a href="https://fonts.google.com/specimen/Poppins/about" class="btn btn-secondary btn-sm" target="_blank">Learn More</a>
               </div>
             </div>
           </div>
         </div>
-        <script>
+        <script async defer>
             function id(sid) {
                 return document.getElementById(sid);
             }
@@ -154,7 +175,7 @@
                 if(Game[1] == 1) {
                     Traits.Fun++;
                     Traits.Social++;
-                    Traits.Happy++;
+                    Traits.Positive++;
                 }
                 if(Game[1] == 2) {
                     Traits.Creative++;
@@ -163,7 +184,7 @@
                 if(Game[1] == 3) {
                     Traits.Anxiety++;
                     Traits.Social++;
-                    Traits.Happy++;
+                    Traits.Positive++;
                 }
 
                 if(Game[2] == 1) {
@@ -174,7 +195,7 @@
                 if(Game[2] == 2) {
                     Traits.Sleepy++;
                     Traits.Anxiety++;
-                    Traits.Happy++;
+                    Traits.Positive++;
                 }
 
                 if(Game[2] == 3) {
@@ -208,7 +229,7 @@
                             if(key == "Social") {
                                 result += "you're out partying 24/7 and are a little crazy, ";
                             }
-                            if(key == "Happy") {
+                            if(key == "Positive") {
                                 result += "you're always putting up a smile, ";
                             }
                         } else
@@ -226,7 +247,7 @@
                             if(key == "Social") {
                                 result += "some might find you an extrovert but you really like being inside, ";
                             }
-                            if(key == "Happy") {
+                            if(key == "Positive") {
                                 result += "you're constantly in tune with the people around you, ";
                             }
                         } else
@@ -244,7 +265,7 @@
                             if(key == "Social") {
                                 result += "you need to go outside, ";
                             }
-                            if(key == "Happy") {
+                            if(key == "Positive") {
                                 result += "you might need something to brighten up your day, ";
                             }
                         }
@@ -254,7 +275,7 @@
 
 
                 result += "and love bread!";
-                result += "<br><br>Your <b>primary trait</b> is that you're overwhelmingly <b>" + maintrait + "</b><hr>";
+                result += "<br><br>Your <b>primary trait</b> is that you're overwhelmingly <b class='text-primary' style='font-size:20px'>" + maintrait + "</b><hr>";
                 set("results", result);
             }
             function next() {
@@ -281,6 +302,15 @@
                 show("grid-lay");
                 next();
             }
+
+            function tweload() {
+            	twemoji.parse(document.body, {
+            		folder: 'svg',
+            		ext: '.svg'
+            	});
+            }
+            tweload();
+            window.onload = (event) => {tweload();}
         </script>
     </body>
 </html>
