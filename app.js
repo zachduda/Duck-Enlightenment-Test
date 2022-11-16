@@ -206,7 +206,7 @@ Traits.Creative += 1;
     console.log("----------------");
 
 
-    result += "and love bread!";
+    result += "and are a fan of ducks!";
     result += "<br><br>Your <b>primary trait</b> is that you're overwhelmingly <b class='text-primary' style='font-size:20px'>" + maintrait + "</b><hr>";
     set("results", result);
 }
