@@ -63,7 +63,7 @@ function done() {
     hide("grid-lay");
     show("results-lay");
     set("top", "<i class='fa-solid fa-square-poll-vertical text-secondary pe-2'></i>Your Results");
-    id("frame").style.maxWidth = "500px";
+    id("frame").style.maxWidth = "600px";
     let result = "";
 
     Traits = {};
