@@ -71,7 +71,7 @@ function done() {
     Traits.Fun = 0;
     Traits.Social = 0;
     Traits.Creative = 0;
-    Traits.Anxiety = 0;
+    Traits.Anxious = 0;
     Traits.Positive = 0;
     Traits.Sleepy = 0;
 
@@ -85,7 +85,7 @@ function done() {
         Traits.Sleepy++;
     }
     if(Game[1] == 3) {
-        Traits.Anxiety++;
+        Traits.Anxious++;
         Traits.Social++;
         Traits.Positive++;
     }
@@ -97,7 +97,7 @@ function done() {
 
     if(Game[2] == 2) {
         Traits.Sleepy++;
-        Traits.Anxiety++;
+        Traits.Anxious++;
         Traits.Positive++;
     }
 
@@ -123,7 +123,7 @@ Traits.Social += 1;
 }
 
 if(Game[4] == 1) {
-Traits.Anxiety += 1;
+Traits.Anxious += 1;
 Traits.Fun -= 1;
 }
 
